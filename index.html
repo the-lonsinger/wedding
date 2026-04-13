@@ -1509,37 +1509,50 @@
       cols.push(col);
     }
 
-    let pending = photos.length;
+    // Preload all images to get dimensions, then place shortest-column
+    let remaining = photos.length;
 
     photos.forEach((p) => {
-      const wrapper = document.createElement('div');
-      wrapper.className = 'gallery-photo';
       const img = new Image();
-      img.src = p.src;
-      img.alt = p.alt;
-      img.loading = 'lazy';
-      img.style.width = '100%';
-      img.style.height = 'auto';
-      img.style.display = 'block';
-      img.style.borderRadius = '8px';
-      wrapper.appendChild(img);
-
-      function place(ratio) {
+      img.onload = function() {
+        const ratio = this.naturalHeight / this.naturalWidth;
         const shortest = heights.indexOf(Math.min(...heights));
+        const wrapper = document.createElement('div');
+        wrapper.className = 'gallery-photo';
+        const displayImg = document.createElement('img');
+        displayImg.src = p.src;
+        displayImg.alt = p.alt;
+        displayImg.loading = 'lazy';
+        displayImg.style.cssText = 'width:100%;height:auto;display:block;border-radius:8px;transition:transform 0.5s ease;';
+        displayImg.onmouseover = function(){ this.style.transform='scale(1.02)'; };
+        displayImg.onmouseout = function(){ this.style.transform='scale(1)'; };
+        wrapper.appendChild(displayImg);
         cols[shortest].appendChild(wrapper);
         heights[shortest] += ratio;
-      }
-
-      if (img.complete && img.naturalWidth) {
-        place(img.naturalHeight / img.naturalWidth);
-      } else {
-        img.onload = () => place(img.naturalHeight / img.naturalWidth);
-        img.onerror = () => place(1.2);
-      }
+      };
+      img.onerror = function() {
+        const shortest = heights.indexOf(Math.min(...heights));
+        const wrapper = document.createElement('div');
+        wrapper.className = 'gallery-photo';
+        const displayImg = document.createElement('img');
+        displayImg.src = p.src;
+        displayImg.alt = p.alt;
+        displayImg.style.cssText = 'width:100%;height:auto;display:block;border-radius:8px;';
+        wrapper.appendChild(displayImg);
+        cols[shortest].appendChild(wrapper);
+        heights[shortest] += 1.2;
+      };
+      img.src = p.src;
     });
   }
 
-  window.addEventListener('DOMContentLoaded', buildMasonry);
+  // Run after full page load to ensure DOM is ready
+  if (document.readyState === 'complete') {
+    buildMasonry();
+  } else {
+    window.addEventListener('load', buildMasonry);
+  }
+
   window.addEventListener('resize', () => {
     clearTimeout(window._masonryTimer);
     window._masonryTimer = setTimeout(buildMasonry, 250);
