@@ -494,6 +494,10 @@
 
     .gallery-photo:hover img { transform: scale(1.02); }
 
+    .guest-names { margin-top: 0.8rem; display: flex; flex-direction: column; gap: 0.6rem; }
+    .guest-name-input { display: none; }
+    .guest-name-input.visible { display: block; }
+
     /* ─── RSVP ─── */
     #rsvp {
       background: linear-gradient(135deg, var(--cream) 0%, var(--beige) 100%);
@@ -1190,49 +1194,63 @@
       Please let us know if you'll be joining us by <strong style="font-style:normal; color:var(--olive-dark);">June 1, 2026</strong>.
     </p>
 
-    <form class="rsvp-form reveal" id="rsvpForm" onsubmit="submitRsvp(event)">
+    <form class="rsvp-form reveal" id="rsvpForm" action="https://formspree.io/f/meevqnkn" method="POST" onsubmit="handleRsvp(event)">
+
       <div class="form-row">
         <div class="form-group">
           <label>First Name</label>
-          <input type="text" placeholder="Jane" required />
+          <input type="text" name="first_name" placeholder="Jane" required />
         </div>
         <div class="form-group">
           <label>Last Name</label>
-          <input type="text" placeholder="Smith" required />
+          <input type="text" name="last_name" placeholder="Smith" required />
         </div>
       </div>
 
       <div class="form-group">
         <label>Email Address</label>
-        <input type="email" placeholder="jane@example.com" required />
+        <input type="email" name="email" placeholder="jane@example.com" required />
       </div>
 
       <div class="form-group">
         <label>Will you be attending?</label>
         <div class="radio-group">
           <label class="radio-option">
-            <input type="radio" name="attending" value="yes" required /> Joyfully accepts
+            <input type="radio" name="attending" value="Joyfully accepts" required /> Joyfully accepts
           </label>
           <label class="radio-option">
-            <input type="radio" name="attending" value="no" /> Regretfully declines
+            <input type="radio" name="attending" value="Regretfully declines" /> Regretfully declines
           </label>
         </div>
       </div>
 
       <div class="form-group">
         <label>Number of Guests (including yourself)</label>
-        <select>
-          <option value="1">1 guest</option>
+        <select name="guest_count" id="guestCount" onchange="updateGuestNames(this.value)">
+          <option value="1">1 — Just me</option>
           <option value="2">2 guests</option>
           <option value="3">3 guests</option>
           <option value="4">4 guests</option>
+          <option value="5">5 guests</option>
+          <option value="6">6 guests</option>
         </select>
+        <div class="guest-names" id="guestNames">
+          <div class="guest-name-input" id="guest2"><input type="text" name="guest_2" placeholder="Guest 2 — Full name" /></div>
+          <div class="guest-name-input" id="guest3"><input type="text" name="guest_3" placeholder="Guest 3 — Full name" /></div>
+          <div class="guest-name-input" id="guest4"><input type="text" name="guest_4" placeholder="Guest 4 — Full name" /></div>
+          <div class="guest-name-input" id="guest5"><input type="text" name="guest_5" placeholder="Guest 5 — Full name" /></div>
+          <div class="guest-name-input" id="guest6"><input type="text" name="guest_6" placeholder="Guest 6 — Full name" /></div>
+        </div>
       </div>
 
       <div class="form-group">
-        <label>Dietary Requirements / Notes</label>
-        <textarea placeholder="Any dietary restrictions or special requests..."></textarea>
+        <label>Leave Matthew & Anastasia a message</label>
+        <textarea name="message" placeholder="We'd love to hear from you... 💛"></textarea>
       </div>
+
+      <p style="font-size:0.82rem; font-style:italic; color:var(--text-light); margin-bottom:1rem;">
+        Please refer to your invitation for plus one details.
+      </p>
 
       <button type="submit" class="btn btn-filled">Send RSVP 🌿</button>
     </form>
@@ -1548,10 +1566,35 @@
   reveals.forEach(el => io.observe(el));
 
   // RSVP submit
-  function submitRsvp(e) {
+  function updateGuestNames(count) {
+    for (let i = 2; i <= 6; i++) {
+      const el = document.getElementById('guest' + i);
+      if (el) {
+        el.classList.toggle('visible', i <= parseInt(count));
+        const input = el.querySelector('input');
+        if (input) input.required = i <= parseInt(count);
+      }
+    }
+  }
+
+  function handleRsvp(e) {
+    const form = document.getElementById('rsvpForm');
+    const data = new FormData(form);
+    fetch(form.action, {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    }).then(res => {
+      if (res.ok) {
+        form.style.display = 'none';
+        document.getElementById('rsvpSuccess').style.display = 'block';
+      } else {
+        alert('Something went wrong — please try again or email us directly.');
+      }
+    }).catch(() => {
+      alert('Something went wrong — please try again or email us directly.');
+    });
     e.preventDefault();
-    document.getElementById('rsvpForm').style.display = 'none';
-    document.getElementById('rsvpSuccess').style.display = 'block';
   }
 </script>
 </body>
