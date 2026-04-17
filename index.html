@@ -313,10 +313,19 @@
 
     .details-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      grid-template-columns: repeat(12, 1fr);
       gap: 1.5rem;
       margin-top: 2rem;
     }
+
+    .details-grid .detail-card:nth-child(1),
+    .details-grid .detail-card:nth-child(2),
+    .details-grid .detail-card:nth-child(3) { grid-column: span 4; }
+
+    .details-grid .detail-card:nth-child(4),
+    .details-grid .detail-card:nth-child(5),
+    .details-grid .detail-card:nth-child(6),
+    .details-grid .detail-card:nth-child(7) { grid-column: span 3; }
 
     .detail-card {
       background: var(--cream);
@@ -875,6 +884,7 @@
       .gallery-masonry { grid-template-columns: repeat(2, 1fr); }
       .countdown { gap: 1rem; }
       .travel-grid { grid-template-columns: 1fr; }
+      .details-grid .detail-card:nth-child(n) { grid-column: span 12; }
     }
   </style>
 </head>
@@ -1036,6 +1046,12 @@
       </div>
       <div class="detail-card reveal">
         <div class="detail-icon">🕐</div>
+        <div class="detail-label">Arrival</div>
+        <div class="detail-value">4:00 PM</div>
+        <div class="detail-sub">Doors open</div>
+      </div>
+      <div class="detail-card reveal">
+        <div class="detail-icon">⛪</div>
         <div class="detail-label">Ceremony</div>
         <div class="detail-value">4:30 PM</div>
         <div class="detail-sub">Stewart Chapel</div>
@@ -1086,30 +1102,30 @@
     <div class="travel-grid reveal">
 
       <div class="travel-card">
-        <span class="travel-card-icon">🌿</span>
-        <span class="travel-card-tag">Boutique · Best Value</span>
-        <p class="travel-card-name">Marin Suites Hotel</p>
+        <span class="travel-card-icon">🏨</span>
+        <span class="travel-card-tag">Marriott · Modern</span>
+        <p class="travel-card-name">AC Marriott San Rafael</p>
         <div class="travel-detail">
           <span class="travel-detail-icon">📍</span>
-          <span>45 Tamal Vista Blvd, Corte Madera, CA</span>
+          <span>998 3rd St, San Rafael, CA</span>
         </div>
         <div class="travel-detail">
           <span class="travel-detail-icon">🚗</span>
-          <span>~10 min from venue</span>
+          <span>~15 min from venue</span>
         </div>
         <div class="travel-detail">
           <span class="travel-detail-icon">💰</span>
-          <span>From ~$134/night</span>
+          <span>From ~$189/night</span>
         </div>
         <div class="travel-detail">
           <span class="travel-detail-icon">✨</span>
-          <span>Apartment-style suites with full kitchens, saltwater pool, sauna, free parking & WiFi</span>
+          <span>Stylish European-inspired hotel, rooftop bar, fitness center, walkable to downtown San Rafael dining</span>
         </div>
         <div class="travel-detail">
           <span class="travel-detail-icon">🏷️</span>
           <span class="travel-tbd">Room block: TBA — check back soon!</span>
         </div>
-        <span class="travel-badge">Free Parking · Pet Friendly</span>
+        <span class="travel-badge">Marriott Bonvoy · Rooftop Bar</span>
       </div>
 
       <div class="travel-card">
@@ -1140,30 +1156,26 @@
       </div>
 
       <div class="travel-card">
-        <span class="travel-card-icon">🏡</span>
-        <span class="travel-card-tag">B&B · Closest to Venue</span>
-        <p class="travel-card-name">San Anselmo Inn</p>
+        <span class="travel-card-icon">🌿</span>
+        <span class="travel-card-tag">Boutique · Best Value</span>
+        <p class="travel-card-name">Marin Suites Hotel</p>
         <div class="travel-detail">
           <span class="travel-detail-icon">📍</span>
-          <span>339 San Anselmo Ave, San Anselmo, CA</span>
+          <span>45 Tamal Vista Blvd, Corte Madera, CA</span>
         </div>
         <div class="travel-detail">
           <span class="travel-detail-icon">🚗</span>
-          <span>~2 min from venue (walking distance)</span>
+          <span>~10 min from venue</span>
         </div>
         <div class="travel-detail">
           <span class="travel-detail-icon">💰</span>
-          <span>From ~$175/night</span>
+          <span>From ~$134/night</span>
         </div>
         <div class="travel-detail">
           <span class="travel-detail-icon">✨</span>
-          <span>Charming B&B in downtown San Anselmo, European-style breakfast included, private event space available, bridal party-friendly</span>
+          <span>Apartment-style suites with full kitchens, saltwater pool, sauna, free parking & WiFi</span>
         </div>
-        <div class="travel-detail">
-          <span class="travel-detail-icon">🏷️</span>
-          <span class="travel-tbd">Room block: TBA — only 15 rooms, book early!</span>
-        </div>
-        <span class="travel-badge">Breakfast Included · Event Space</span>
+        <span class="travel-badge">Free Parking · Pet Friendly</span>
       </div>
 
     </div>
@@ -1220,7 +1232,7 @@
       Please let us know if you'll be joining us by <strong style="font-style:normal; color:var(--olive-dark);">June 1, 2026</strong>.
     </p>
 
-    <form class="rsvp-form reveal" id="rsvpForm" action="https://formspree.io/f/meevqnkn" method="POST" onsubmit="handleRsvp(event)">
+    <form class="rsvp-form reveal" id="rsvpForm" action="https://formspree.io/f/REPLACE_WITH_YOUR_ID" method="POST" onsubmit="handleRsvp(event)">
 
       <div class="form-row">
         <div class="form-group">
@@ -1483,7 +1495,6 @@
     { src: 'photo12.jpeg', alt: 'Walking through San Francisco' },
     { src: 'photo5.jpeg',  alt: 'Dressed up in India' },
     { src: 'photo2.jpeg',  alt: 'On stage at a live show' },
-    { src: 'photo14.jpeg', alt: 'Couch night with Korra' },
     { src: 'photo10.jpeg', alt: 'Dressed in traditional attire in Hawaii' },
     { src: 'photo4.jpeg',  alt: '49ers tailgate' },
   ];
