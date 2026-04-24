@@ -645,9 +645,18 @@
 
     .funds-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(8, 1fr);
       gap: 1rem;
     }
+
+    .funds-grid .fund-card:nth-child(1),
+    .funds-grid .fund-card:nth-child(2),
+    .funds-grid .fund-card:nth-child(3),
+    .funds-grid .fund-card:nth-child(4) { grid-column: span 2; }
+
+    .funds-grid .fund-card:nth-child(5) { grid-column: 2 / span 2; }
+    .funds-grid .fund-card:nth-child(6) { grid-column: 4 / span 2; }
+    .funds-grid .fund-card:nth-child(7) { grid-column: 6 / span 2; }
 
     .fund-card {
       background: var(--cream);
@@ -885,6 +894,7 @@
       .countdown { gap: 1rem; }
       .travel-grid { grid-template-columns: 1fr; }
       .details-grid .detail-card:nth-child(n) { grid-column: span 12; }
+      .funds-grid { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
@@ -1288,15 +1298,15 @@
       </div>
 
       <div class="form-group">
-        <label>Meal Preference</label>
+        <label>How would you like to dine?</label>
         <div class="radio-group">
           <label class="radio-option">
-            <input type="radio" name="meal_preference" value="Meat" />
-            <span class="radio-custom"></span> Meat
+            <input type="radio" name="meal_preference" value="Chef's Meat Selection" />
+            <span class="radio-custom"></span> 🥩 Chef's Meat Selection
           </label>
           <label class="radio-option">
-            <input type="radio" name="meal_preference" value="Vegetarian" />
-            <span class="radio-custom"></span> Vegetarian
+            <input type="radio" name="meal_preference" value="Chef's Vegetarian Selection" />
+            <span class="radio-custom"></span> 🌿 Chef's Vegetarian Selection
           </label>
         </div>
       </div>
@@ -1360,11 +1370,6 @@
         <span class="fund-icon">🕯️</span>
         <p class="fund-name">Date Nights for Year One</p>
         <p class="fund-desc">Help us slow down the first year of marriage — one intentional date night at a time.</p>
-      </a>
-      <a class="fund-card" href="https://www.zola.com/registry/lonsingerzorkowedding" target="_blank" rel="noopener">
-        <span class="fund-icon">🌅</span>
-        <p class="fund-name">A Sunset We'll Never Forget</p>
-        <p class="fund-desc">There's a sunset out there somewhere with our names on it. Help us find it.</p>
       </a>
       <a class="fund-card" href="https://www.zola.com/registry/lonsingerzorkowedding" target="_blank" rel="noopener">
         <span class="fund-icon">⬆️</span>
