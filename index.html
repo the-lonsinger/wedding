@@ -1269,77 +1269,81 @@
         <label>Will you be attending?</label>
         <div class="radio-group">
           <label class="radio-option">
-            <input type="radio" name="attending" value="Joyfully accepts" required />
+            <input type="radio" name="attending" value="Joyfully accepts" required onchange="toggleAttendingFields(this.value)" />
             <span class="radio-custom"></span> Joyfully accepts
           </label>
           <label class="radio-option">
-            <input type="radio" name="attending" value="Regretfully declines" />
+            <input type="radio" name="attending" value="Regretfully declines" onchange="toggleAttendingFields(this.value)" />
             <span class="radio-custom"></span> Regretfully declines
           </label>
         </div>
       </div>
 
-      <div class="form-group">
-        <label>Number of Guests (including yourself)</label>
-        <select name="guest_count" id="guestCount" onchange="updateGuestNames(this.value)">
-          <option value="1">1 — Just me</option>
-          <option value="2">2 guests</option>
-          <option value="3">3 guests</option>
-          <option value="4">4 guests</option>
-          <option value="5">5 guests</option>
-          <option value="6">6 guests</option>
-        </select>
-        <div class="guest-names" id="guestNames">
-          <div class="guest-name-input" id="guest2">
-            <input type="text" name="guest_2" placeholder="Guest 2 — Full name" />
-            <div class="guest-meal-row">
-              <label class="radio-option"><input type="radio" name="meal_guest_2" value="Chef's Meat Selection" /><span class="radio-custom"></span> 🥩 Meat</label>
-              <label class="radio-option"><input type="radio" name="meal_guest_2" value="Chef's Vegetarian Selection" /><span class="radio-custom"></span> 🌿 Vegetarian</label>
-            </div>
-          </div>
-          <div class="guest-name-input" id="guest3">
-            <input type="text" name="guest_3" placeholder="Guest 3 — Full name" />
-            <div class="guest-meal-row">
-              <label class="radio-option"><input type="radio" name="meal_guest_3" value="Chef's Meat Selection" /><span class="radio-custom"></span> 🥩 Meat</label>
-              <label class="radio-option"><input type="radio" name="meal_guest_3" value="Chef's Vegetarian Selection" /><span class="radio-custom"></span> 🌿 Vegetarian</label>
-            </div>
-          </div>
-          <div class="guest-name-input" id="guest4">
-            <input type="text" name="guest_4" placeholder="Guest 4 — Full name" />
-            <div class="guest-meal-row">
-              <label class="radio-option"><input type="radio" name="meal_guest_4" value="Chef's Meat Selection" /><span class="radio-custom"></span> 🥩 Meat</label>
-              <label class="radio-option"><input type="radio" name="meal_guest_4" value="Chef's Vegetarian Selection" /><span class="radio-custom"></span> 🌿 Vegetarian</label>
-            </div>
-          </div>
-          <div class="guest-name-input" id="guest5">
-            <input type="text" name="guest_5" placeholder="Guest 5 — Full name" />
-            <div class="guest-meal-row">
-              <label class="radio-option"><input type="radio" name="meal_guest_5" value="Chef's Meat Selection" /><span class="radio-custom"></span> 🥩 Meat</label>
-              <label class="radio-option"><input type="radio" name="meal_guest_5" value="Chef's Vegetarian Selection" /><span class="radio-custom"></span> 🌿 Vegetarian</label>
-            </div>
-          </div>
-          <div class="guest-name-input" id="guest6">
-            <input type="text" name="guest_6" placeholder="Guest 6 — Full name" />
-            <div class="guest-meal-row">
-              <label class="radio-option"><input type="radio" name="meal_guest_6" value="Chef's Meat Selection" /><span class="radio-custom"></span> 🥩 Meat</label>
-              <label class="radio-option"><input type="radio" name="meal_guest_6" value="Chef's Vegetarian Selection" /><span class="radio-custom"></span> 🌿 Vegetarian</label>
-            </div>
-          </div>
-        </div>
-      </div>
+      <div id="attendingFields" style="display:none;">
 
-      <div class="form-group">
-        <label>Your Meal Preference</label>
-        <div class="radio-group">
-          <label class="radio-option">
-            <input type="radio" name="meal_preference" value="Chef's Meat Selection" />
-            <span class="radio-custom"></span> 🥩 Chef's Meat Selection
-          </label>
-          <label class="radio-option">
-            <input type="radio" name="meal_preference" value="Chef's Vegetarian Selection" />
-            <span class="radio-custom"></span> 🌿 Chef's Vegetarian Selection
-          </label>
+        <div class="form-group">
+          <label>Your Meal Preference</label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="meal_preference" value="Chef's Meat Selection" />
+              <span class="radio-custom"></span> 🥩 Chef's Meat Selection
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="meal_preference" value="Chef's Vegetarian Selection" />
+              <span class="radio-custom"></span> 🌿 Chef's Vegetarian Selection
+            </label>
+          </div>
         </div>
+
+        <div class="form-group">
+          <label>Number of Guests (including yourself)</label>
+          <select name="guest_count" id="guestCount" onchange="updateGuestNames(this.value)">
+            <option value="1">1 — Just me</option>
+            <option value="2">2 guests</option>
+            <option value="3">3 guests</option>
+            <option value="4">4 guests</option>
+            <option value="5">5 guests</option>
+            <option value="6">6 guests</option>
+          </select>
+          <div class="guest-names" id="guestNames">
+            <div class="guest-name-input" id="guest2">
+              <input type="text" name="guest_2" placeholder="Guest 2 — Full name" />
+              <div class="guest-meal-row">
+                <label class="radio-option"><input type="radio" name="meal_guest_2" value="Chef's Meat Selection" /><span class="radio-custom"></span> 🥩 Chef's Meat Selection</label>
+                <label class="radio-option"><input type="radio" name="meal_guest_2" value="Chef's Vegetarian Selection" /><span class="radio-custom"></span> 🌿 Chef's Vegetarian Selection</label>
+              </div>
+            </div>
+            <div class="guest-name-input" id="guest3">
+              <input type="text" name="guest_3" placeholder="Guest 3 — Full name" />
+              <div class="guest-meal-row">
+                <label class="radio-option"><input type="radio" name="meal_guest_3" value="Chef's Meat Selection" /><span class="radio-custom"></span> 🥩 Chef's Meat Selection</label>
+                <label class="radio-option"><input type="radio" name="meal_guest_3" value="Chef's Vegetarian Selection" /><span class="radio-custom"></span> 🌿 Chef's Vegetarian Selection</label>
+              </div>
+            </div>
+            <div class="guest-name-input" id="guest4">
+              <input type="text" name="guest_4" placeholder="Guest 4 — Full name" />
+              <div class="guest-meal-row">
+                <label class="radio-option"><input type="radio" name="meal_guest_4" value="Chef's Meat Selection" /><span class="radio-custom"></span> 🥩 Chef's Meat Selection</label>
+                <label class="radio-option"><input type="radio" name="meal_guest_4" value="Chef's Vegetarian Selection" /><span class="radio-custom"></span> 🌿 Chef's Vegetarian Selection</label>
+              </div>
+            </div>
+            <div class="guest-name-input" id="guest5">
+              <input type="text" name="guest_5" placeholder="Guest 5 — Full name" />
+              <div class="guest-meal-row">
+                <label class="radio-option"><input type="radio" name="meal_guest_5" value="Chef's Meat Selection" /><span class="radio-custom"></span> 🥩 Chef's Meat Selection</label>
+                <label class="radio-option"><input type="radio" name="meal_guest_5" value="Chef's Vegetarian Selection" /><span class="radio-custom"></span> 🌿 Chef's Vegetarian Selection</label>
+              </div>
+            </div>
+            <div class="guest-name-input" id="guest6">
+              <input type="text" name="guest_6" placeholder="Guest 6 — Full name" />
+              <div class="guest-meal-row">
+                <label class="radio-option"><input type="radio" name="meal_guest_6" value="Chef's Meat Selection" /><span class="radio-custom"></span> 🥩 Chef's Meat Selection</label>
+                <label class="radio-option"><input type="radio" name="meal_guest_6" value="Chef's Vegetarian Selection" /><span class="radio-custom"></span> 🌿 Chef's Vegetarian Selection</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
 
       <div class="form-group">
@@ -1658,6 +1662,11 @@
   reveals.forEach(el => io.observe(el));
 
   // RSVP submit
+  function toggleAttendingFields(value) {
+    const fields = document.getElementById('attendingFields');
+    fields.style.display = value === 'Joyfully accepts' ? 'block' : 'none';
+  }
+
   function updateGuestNames(count) {
     for (let i = 2; i <= 6; i++) {
       const el = document.getElementById('guest' + i);
