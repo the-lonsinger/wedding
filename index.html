@@ -311,6 +311,73 @@
     /* ─── DETAILS ─── */
     #details { background: var(--ivory); }
 
+    .weekend-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .weekend-card {
+      background: var(--cream);
+      border: 1px solid var(--beige);
+      padding: 2.5rem 2.2rem;
+      position: relative;
+      transition: transform 0.2s, box-shadow 0.2s;
+      text-align: center;
+    }
+
+    .weekend-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 3px;
+      background: linear-gradient(to right, var(--gold), var(--gold-light));
+    }
+
+    .weekend-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(107,124,90,0.1);
+    }
+
+    .weekend-icon { font-size: 2.2rem; margin-bottom: 1rem; }
+
+    .weekend-day {
+      font-size: 0.62rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      font-weight: 500;
+      margin-bottom: 0.6rem;
+    }
+
+    .weekend-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.9rem;
+      color: var(--olive-dark);
+      margin-bottom: 1rem;
+      line-height: 1.1;
+    }
+
+    .weekend-desc {
+      font-size: 0.95rem;
+      color: var(--text-mid);
+      line-height: 1.6;
+      margin-bottom: 1.2rem;
+    }
+
+    .weekend-pill {
+      display: inline-block;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      background: var(--beige);
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-weight: 500;
+    }
+
     .details-grid {
       display: grid;
       grid-template-columns: repeat(12, 1fr);
@@ -894,6 +961,7 @@
       .gallery-masonry { grid-template-columns: repeat(2, 1fr); }
       .countdown { gap: 1rem; }
       .travel-grid { grid-template-columns: 1fr; }
+      .weekend-grid { grid-template-columns: 1fr; }
       .details-grid .detail-card:nth-child(n) { grid-column: span 12; }
       .funds-grid { grid-template-columns: 1fr; }
       .funds-grid .fund-card:nth-child(n) { grid-column: span 1; }
@@ -904,10 +972,11 @@
 
 <!-- NAV -->
 <nav>
-  <div class="nav-monogram">M & A</div>
+  <div class="nav-monogram">A & M</div>
   <ul class="nav-links">
     <li><a href="#story">Our Story</a></li>
     <li><a href="#details">Details</a></li>
+    <li><a href="#weekend">Events</a></li>
     <li><a href="#gallery">Gallery</a></li>
     <li><a href="#travel">Travel</a></li>
     <li><a href="#rsvp">RSVP</a></li>
@@ -1081,6 +1150,40 @@
         <div class="detail-sub">Geneva Terrace</div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- WEEKEND EVENTS -->
+<section id="weekend">
+  <div class="section-inner">
+    <p class="section-tag reveal">Make a Weekend of It</p>
+    <h2 class="section-title reveal">Weekend <em>Events</em></h2>
+    <div class="gold-rule reveal"></div>
+    <p class="reveal" style="font-family:'Cormorant Garamond',serif; font-size:1.15rem; color:var(--text-mid); font-style:italic; margin-bottom:0.5rem; max-width:620px;">
+      The wedding is just the centerpiece — we're planning a couple of extra gatherings so we can spend even more time celebrating with you. Details are still coming together, but here's a heads-up so you can plan your weekend!
+    </p>
+    <div class="weekend-grid reveal">
+
+      <div class="weekend-card">
+        <div class="weekend-icon">🥂</div>
+        <div class="weekend-day">Friday Evening · August 28</div>
+        <div class="weekend-name">Welcome Gathering</div>
+        <p class="weekend-desc">Join us the night before for a relaxed evening of drinks and good company. A casual chance to say hello and kick off the weekend together before the big day.</p>
+        <span class="weekend-pill">Time & Location TBA</span>
+      </div>
+
+      <div class="weekend-card">
+        <div class="weekend-icon">🍸</div>
+        <div class="weekend-day">Saturday Night · August 29</div>
+        <div class="weekend-name">The After Party</div>
+        <p class="weekend-desc">When the reception winds down, the celebration doesn't have to! We'll head to a nearby spot for continued drinks and dancing into the night. All are welcome.</p>
+        <span class="weekend-pill">Time & Location TBA</span>
+      </div>
+
+    </div>
+    <p class="reveal" style="font-size:0.85rem; color:var(--text-light); font-style:italic; margin-top:1.5rem; text-align:center;">
+      More details to follow as we finalize plans — check back closer to the date! 🌿
+    </p>
   </div>
 </section>
 
