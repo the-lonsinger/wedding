@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Share your photos &middot; Matthew &amp; Anastasia</title>
+
+<!-- ============================================================
+     PASTE YOUR DROPBOX FILE REQUEST LINK IN THE TWO PLACES BELOW.
+     It will look like: https://www.dropbox.com/request/AbC123xyz
+     1. the content="0; url=..." attribute on the next line
+     2. the href="..." on the button further down
+     ============================================================ -->
+<meta http-equiv="refresh" content="0; url=https://www.dropbox.com/request/4fla3s7fn9fxfytgdavo">
+
+<style>
+  :root { color-scheme: light; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #faf8f5;
+    color: #2b2622;
+    font-family: Georgia, "Times New Roman", serif;
+    text-align: center;
+    padding: 2rem 1.5rem;
+    box-sizing: border-box;
+  }
+  main { max-width: 26rem; }
+  h1 {
+    font-size: 1.6rem;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    margin: 0 0 0.75rem;
+  }
+  p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0 0 1.75rem;
+    color: #5a5049;
+  }
+  a.button {
+    display: inline-block;
+    padding: 0.85rem 1.75rem;
+    background: #2b2622;
+    color: #faf8f5;
+    text-decoration: none;
+    border-radius: 2px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 0.95rem;
+    letter-spacing: 0.03em;
+  }
+  a.button:focus-visible { outline: 2px solid #2b2622; outline-offset: 3px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Share your photos</h1>
+  <p>Taking you to the upload page. If nothing happens, tap below.</p>
+  <a class="button" href="https://www.dropbox.com/request/4fla3s7fn9fxfytgdavo">Upload photos</a>
+</main>
+
+<script>
+  // Backup for browsers that ignore meta refresh.
+  setTimeout(function () {
+    var link = document.querySelector('a.button');
+    if (link && link.href.indexOf('DROPBOX_LINK') === -1) {
+      window.location.replace(link.href);
+    }
+  }, 1200);
+</script>
+</body>
+</html>
